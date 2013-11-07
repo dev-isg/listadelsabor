@@ -6,7 +6,7 @@ var dataSource = {
     
     dist: '',
     /* base url for all Rotten Tomatoes web APIs */
-    baseurl: 'http://192.168.1.34:8080/',
+    baseurl: 'http://listadelsabor.com/',
     
     /* locally cached data */
     data: [],
