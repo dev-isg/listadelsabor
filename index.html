@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Listadelsabor.com</title>
+      <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" type="text/css" media="all" />
+      <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+      <script type="text/javascript" src="js/mustache/mustache.js"></script>
+      <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+      <script src="js/jquery.mobile.config.js"></script>
+      <script type="text/javascript" src="js/jquery.jsonp/jquery.jsonp.js"></script>
+      <script src="js/jquery.validate.min.js"></script>
+      <script src="js/cordova-2.1.0.js"></script>
+      <script src="js/app.js"></script>
+      <script src="js/jquery.mobile-1.3.2.min.js"></script>
+      <script>
+        
+      
+      </script>
+   </head>
+   <body>
+      <!-- Home -->
+      <div data-role="page" id="page1">
+        <div data-theme="a" data-role="header">
+          <h3>Listadelsabor.com</h3>
+        </div>
+        <div data-role="content" id="idCont">
+          <form action="#" id="form-search" data-ajax="false" method="GET">
+            <div data-role="fieldcontain">
+              <input name="searchPlato" id="searchPlato" placeholder="Ingrese nombre del plato" value="" type="text">
+            </div>
+            <div data-role="fieldcontain">
+              <label for="searchOption" class="select">Seleccione un distrito</label>
+              <select name="searchOption" id="searchOption" data-native-menu="false">
+                <option value="LIMA">TODOS LOS DISTRITOS</option>
+                <option value="ANCON">ANCON</option>
+                <option value="ATE">ATE</option>
+                <option value="BARRANCO">BARRANCO</option>
+                <option value="BREÑA">BREÑA</option>
+                <option value="CARABAYLLO">CARABAYLLO</option>
+                <option value="CHACLACAYO">CHACLACAYO</option>
+                <option value="CHORRILLOS">CHORRILLOS</option>
+                <option value="CIENEGUILLA">CIENEGUILLA</option>
+                <option value="COMAS">COMAS</option>
+                <option value="EL AGUSTINO">EL AGUSTINO</option>
+                <option value="INDEPENDENCIA">INDEPENDENCIA</option>
+                <option value="JESUS MARIA">JESUS MARIA</option>
+                <option value="LA MOLINA">LA MOLINA</option>
+                <option value="LA VICTORIA">LA VICTORIA</option>
+                <option value="CERCADO DE LIMA">CERCADO DE LIMA</option>
+                <option value="LINCE">LINCE</option>
+                <option value="LOS OLIVOS">LOS OLIVOS</option>
+                <option value="LURIGANCHO">LURIGANCHO</option>
+                <option value="LURIN">LURIN</option>
+                <option value="MAGDALENA DEL MAR">MAGDALENA DEL MAR</option>
+                <option value="MIRAFLORES">MIRAFLORES</option>
+                <option value="PACHACAMAC">PACHACAMAC</option>
+                <option value="PUCUSANA">PUCUSANA</option>
+                <option value="PUEBLO LIBRE">PUEBLO LIBRE</option>
+                <option value="PUENTE PIEDRA">PUENTE PIEDRA</option>
+                <option value="PUNTA HERMOSA">PUNTA HERMOSA</option>
+                <option value="PUNTA NEGRA">PUNTA NEGRA</option>
+                <option value="RIMAC">RIMAC</option>
+                <option value="SAN BARTOLO">SAN BARTOLO</option>
+                <option value="SAN BORJA">SAN BORJA</option>
+                <option value="SAN ISIDRO">SAN ISIDRO</option>
+                <option value="SAN JUAN DE LURIGANCHO">SAN JUAN DE LURIGANCHO</option>
+                <option value="SAN JUAN DE MIRAFLORES">SAN JUAN DE MIRAFLORES</option>
+                <option value="SAN LUIS">SAN LUIS</option>
+                <option value="SAN MARTIN DE PORRES">SAN MARTIN DE PORRES</option>
+                <option value="SAN MIGUEL">SAN MIGUEL</option>
+                <option value="SANTA ANITA">SANTA ANITA</option>
+                <option value="SANTA MARIA DEL MAR">SANTA MARIA DEL MAR</option>
+                <option value="SANTA ROSA">SANTA ROSA</option>
+                <option value="SANTIAGO DE SURCO">SANTIAGO DE SURCO</option>
+                <option value="SURQUILLO">SURQUILLO</option>
+                <option value="VILLA EL SALVADOR">VILLA EL SALVADOR</option>
+                <option value="VILLA MARIA DEL TRIUNFO">VILLA MARIA DEL TRIUNFO</option>
+              </select>
+            </div>
+            <input type="submit" data-theme="a" value="Buscar">
+          </form>
+          <!--<ul data-role="listview" data-divider-theme="b" data-inset="true" class="result-item" id="content-result-platos">
+                       
+          </ul>-->
+          
+          <script type="text/html" id="primaryPageSkeletonCargar">
+            <ul data-role="listview" data-divider-theme="b" data-inset="true" class="result-item" id="content-result-platos">
+              <!-- mustache section -->
+              {{#.}}
+                  <!-- template for each item in given json data -->
+                  <li id="item-id" data-theme="c">
+                    <a class="btn-selec" href="#" data-url-comer="{{va_url}}" data-comida="{{va_nombre}}">
+                      <div class="thumbnail">
+                        <img class="lazy noimage" src="{{va_imagen}}" data-original="{{va_imagen}}" height="50" width="50" />
+                      </div>
+                      <div class="info">
+                        <span class="name">
+                          <h3 class="nameComida">{{va_nombre}}</h3>
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+              {{/.}}
+            </ul>
+          </script>
+        </div>
+      </div>
+      
+    <!-- template for primary page skeleton -->
+    <script type="text/html" id="primaryPageSkeletonTmpl">
+      <div data-role="page" class="primaryPage">
+        <!-- header -->
+        <!-- top-right button to refresh entire app with new movie data from Flixster web API -->
+        <div data-role="header" data-id="app-header">
+          <a href="index.html" rel="external" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left"></a>
+          <h3>ListadelSabor.com</h3>
+          <a href="#" data-icon="refresh" data-iconpos="notext" class="ui-btn-right refreshBtn">Actualizar</a>
+        </div>
+        <!-- content -->
+        <!-- to contain listview dynamically created with movie data from Flixster web API -->
+        <div data-role="content">
+
+        </div>
+        <!-- footer -->
+        <!-- navbar to link previous and next pages of movie data -->
+        <div data-role="footer" data-theme="a">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" class="prev">Atras</a></li>
+                    <li><a href="#" class="next">Siguiente</a></li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </script>
+    
+    <!-- template for content of primary pages -->
+    <script type="text/html" id="primaryPageContentTmpl">
+        <ul data-role="listview" data-divider-theme="b" data-inset="true" class="movies" id="listPlatosG">
+            <!-- mustache section -->
+            {{#.}}
+              <li id="item-id-p" data-theme="c" class="result-item">
+                <a class="btn-selec-desc" href="#secondaryPage" data-transition="slide" data-ajax="false" data-id="{{id}}">
+                    <div class="thumbnail">
+                      <img class="lazy noimage" src="{{va_imagen}}" data-original="{{va_imagen}}" height="50" width="50" />
+                    </div>
+                    <div class="info">
+                      <div class="name-plato">
+                        <span class="name">
+                          <h4>{{name}}</h4>
+                        </span>
+                      </div>
+                      <div class="name-restaurant">
+                        <span class="name-res">
+                          <h4>{{restaurante}}</h4>
+                        </span>
+                      </div>
+                      <div class="name-distrito">
+                        <span class="name-dis">
+                          <h4>{{distrito}}</h4>
+                        </span>
+                      </div>
+                      <div class="ratings">
+                        <div class="rating-stars s-{{puntuacion}}"></div>
+                      </div>
+                    </div>
+                </a>
+              </li>
+            {{/.}}
+        </ul>
+    </script>
+    
+    <!-- single copy of secondary page skeleton, content and title to be filled on demand -->    
+    <div data-role="page" id="secondaryPage">
+        <!-- header -->
+        <div data-role="header" data-id="app-header">
+          <a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left"></a>
+          <h3>ListadelSabor.com</h3>
+          <a href="index.html" rel="external" data-icon="home" data-iconpos="notext" class="ui-btn-right"></a>
+        </div>
+        
+        <!-- content -->
+        <div data-role="content">
+          <div class="content-desc-restaurante">
+
+          </div>
+          <div class="content-agrCom">
+            <a data-role="button" href="#addNew" class="btn-addC" data-icon="star" data-iconpos="left">
+              Agregar comentario
+            </a>
+          </div>
+          <div class="content-desc-comentario">
+
+          </div>
+        </div>
+        
+        <!-- footer -->
+        <div data-role="footer" data-position="fixed">
+        </div>
+        
+    </div>
+    
+    <!-- template for content of secondary pages -->
+    <script type="text/html" id="secondaryPageContentTmpl">
+      <div class="keyInfo">
+        <div class="ProfileWrapper namePrin">
+          <h2 class="nameResComent" data-id-com="{{id}}">{{restaurante}}</h2>
+        </div>
+      <div class="iosSlider" id="foodSpottingSlider">
+      <div class="slider" id="imgSlider">
+        <div class="slide">
+        <img src="{{va_imagen_detalle}}" alt="" class="rImage" id="slideImgRestProfile">
+      </div>
+      </div>
+      <div class="iosSliderButtons"></div>
+    </div>
+    <div class="ProfileWrapper nameSe">
+      <h2>{{name}}</h2>
+      <ul class="items">
+        <li class="item" id="rating">
+          <div class="ratings">
+            <div class="Star s-{{puntuacion}}"><!-- e --></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <h5>{{tx_descripcion}}</h5>
+    <h5>{{va_direccion}}</h5>
+    <a href="tel:{{va_telefono}}" data-role="button" data-icon="tel">{{va_telefono}}</a>
+    </script>
+
+    <script type="text/html" id="secondaryComentarios">
+      {{#.}}
+        <div class="detailsList result-item">
+          <div class="doc-review">
+            <div class="thumbnail">
+              <img src="http://listadelsabor.com/img/foto-carnet.jpg" class="review-image g-hovercard" id="card">
+            </div>
+            <div class="info">
+              <div class="doc-review-author  g-hovercard" data-userid="id_user" id="card1">
+                <strong class="name-coment">{{va_nombre_cliente}}</strong>
+              </div>
+              <div class="ratings">
+                <div class="rating-stars s-{{ta_puntaje_in_id}}"></div>
+                </div>                           
+              <div class="review-text">{{tx_descripcion}}</div>
+            </div>
+          </div>
+        </div>
+      {{/.}}
+    </script>
+
+    <div data-role="dialog" id="addNew">
+      <div data-role="header">
+        <h1>Añadir Comentario</h1>
+      </div>
+      <div data-role="content">
+        <form action="" method="GET" id="comentAgregar" data-ajax="false">
+          <label for="va_nombre">Nombre:</label>
+          <div class="inputCont">
+            <input type="text" name="va_nombre" id="va_nombre"></input>
+          </div>
+          <label for="va_email">Correo:</label>
+          <div class="inputCont">
+            <input type="text" name="va_email" id="va_email"></input>
+          </div>
+          <label for="select-choice-0" class="select">Puntua el plato</label>
+          <select name="Ta_puntaje_in_id" id="Ta_puntaje_in_id" data-native-menu="false" data-theme="c" >
+            <option value="1" class="one">1</option>
+            <option value="2" class="two">2</option>
+            <option value="3" class="three">3</option>
+            <option value="4" class="four">4</option>
+            <option value="5" class="five">5</option>
+          </select>
+          <label for="tx_descripcion">Comentario:</label>
+          <textarea cols="40" rows="20" name="tx_descripcion" id="tx_descripcion"></textarea>
+          <fieldset class="ui-grid-a">
+            <div class="ui-block-a">
+              <a href="#" data-rel="back" data-role="button">Cancelar</a>
+            </div>
+            <div class="ui-block-b">
+              <input type="submit" data-theme="b" class="btn-Quitar" value="Aceptar">
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+   </body>
+</html>

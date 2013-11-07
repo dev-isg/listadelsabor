@@ -1,0 +1,20 @@
+jsonpCallback([
+    {
+        "tx_descripcion":"Habr\u00eda que probarlo :D",
+        "ta_puntaje_in_id":"4",
+        "va_nombre_cliente":"sandro",
+        "va_email":"sandro@yopmail.com"
+    },
+    {
+        "tx_descripcion":"Una buena combinaci\u00f3n, palta y ceviche! queda muy bien!",
+        "ta_puntaje_in_id":"5",
+        "va_nombre_cliente":"Rina",
+        "va_email":"rinita@yopmail.com"
+    },
+    {
+        "tx_descripcion":"Muy bueno. Innovaci\u00f3n pura y sabor distinto. Lo recomiendo.",
+        "ta_puntaje_in_id":"5",
+        "va_nombre_cliente":"sandro",
+        "va_email":"sandro@yopmail.com"
+    }
+])
