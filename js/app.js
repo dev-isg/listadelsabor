@@ -6,7 +6,7 @@ var dataSource = {
     
     dist: '',
     /* base url for all Rotten Tomatoes web APIs */
-    baseurl: 'http://listadelsabor.com/',
+    baseurl: 'http://192.168.1.34:8080/',
     
     /* locally cached data */
     data: [],
@@ -328,7 +328,7 @@ var viewController = {
         var pagenum = $(this).attr('id');
         
         /* while still loading data, show spinner */
-        $page.on('pageshow', '#1', function() {
+        $page.on('pageshow', function() {
             if ($page.find(':jqmData(role=content)').html().trim() == '') {
                 $.mobile.showPageLoadingMsg();
             }
