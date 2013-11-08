@@ -481,8 +481,13 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
 #item-id:first-child{
 	border-top-width:0;
 }
+#item-id-p.item-si{
+	background: #FFEFBF;
+}
+#item-id-p.item-no{
+	background: #f0f0f0;
+}
 #item-id-p{
-	background: #f9f7eb;
 	border: 1px solid #dbd9cb;
 	border-top-width: 2px;
 	border-left-width: 0px;
@@ -703,6 +708,9 @@ li#item-id-p.ui-btn-hover-c:hover{
 #addNew label{
 	color: #333;
 	font-size: 14px;
+	-webkit-text-shadow:0 0 0;
+	-moz-text-shadow:0 0 0;
+	text-shadow:0 0 0;
 }
 #addNew .ui-header.ui-bar-a{
 	background: #f8f4e5;
@@ -711,4 +719,11 @@ li#item-id-p.ui-btn-hover-c:hover{
 }
 #addNew .ui-content.ui-body-a{
 	background: #f8f4e5;
+}
+#Ta_puntaje_in_id-button span.ui-btn-text span{
+	display: none;
+}
+#comentAgregar label.error{
+	color: red;
+	margin-bottom: 5px;
 }

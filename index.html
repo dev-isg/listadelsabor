@@ -22,7 +22,7 @@
    <body>
       <!-- Home -->
       <div data-role="page" id="page1">
-        <div data-theme="a" data-role="header">
+        <div data-theme="a" data-role="header" data-position="fixed">
           <h3>Listadelsabor.com</h3>
         </div>
         <div data-role="content" id="idCont">
@@ -113,7 +113,7 @@
       <div data-role="page" class="primaryPage">
         <!-- header -->
         <!-- top-right button to refresh entire app with new movie data from Flixster web API -->
-        <div data-role="header" data-id="app-header">
+        <div data-role="header" data-id="app-header" data-position="fixed">
           <a href="index.html" rel="external" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left"></a>
           <h3>ListadelSabor.com</h3>
           <a href="#" data-icon="refresh" data-iconpos="notext" class="ui-btn-right refreshBtn">Actualizar</a>
@@ -141,7 +141,7 @@
         <ul data-role="listview" data-divider-theme="b" data-inset="true" class="movies" id="listPlatosG">
             <!-- mustache section -->
             {{#.}}
-              <li id="item-id-p" data-theme="c" class="result-item">
+              <li id="item-id-p" data-theme="c" class="result-item item-{{en_destaque}}">
                 <a class="btn-selec-desc" href="#secondaryPage" data-transition="slide" data-ajax="false" data-id="{{id}}">
                     <div class="thumbnail">
                       <img class="lazy noimage" src="{{va_imagen}}" data-original="{{va_imagen}}" height="50" width="50" />
@@ -175,7 +175,7 @@
     <!-- single copy of secondary page skeleton, content and title to be filled on demand -->    
     <div data-role="page" id="secondaryPage">
         <!-- header -->
-        <div data-role="header" data-id="app-header">
+        <div data-role="header" data-id="app-header" data-position="fixed">
           <a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-left"></a>
           <h3>ListadelSabor.com</h3>
           <a href="index.html" rel="external" data-icon="home" data-iconpos="notext" class="ui-btn-right"></a>
@@ -203,7 +203,7 @@
     </div>
     
     <div data-role="page" id="datosVacios">
-      <div data-role="header" data-id="app-header">
+      <div data-role="header" data-id="app-header" data-position="fixed">
           <h3>ListadelSabor.com</h3>
           <a href="index.html" rel="external" data-icon="home" data-iconpos="notext" class="ui-btn-left"></a>
         </div>

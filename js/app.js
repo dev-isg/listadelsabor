@@ -6,7 +6,7 @@ var dataSource = {
     
     dist: '',
     /* base url for all Rotten Tomatoes web APIs */
-    baseurl: 'http://listadelsabor.com/',
+    baseurl: 'http://192.168.1.34:8080/',
     
     /* locally cached data */
     data: [],
@@ -395,7 +395,72 @@ var viewController = {
     },
 
     initComentar: function(){
-        $('#comentAgregar').submit(function(event) {
+        $("#comentAgregar").validate({
+            rules: {
+                va_nombre:{
+                    required:true
+                },
+                va_email:{
+                    required:true,
+                    email:true
+                },
+                Ta_puntaje_in_id:{
+                    required:true
+                },
+                tx_descripcion:{
+                    required:true
+                }
+            },
+            messages:{
+                va_nombre:{
+                    required: 'Ingrese su nombre'
+                },
+                va_email:{
+                    required:'Ingrese su correo',
+                    email:'Correo incorrecto'
+                },
+                Ta_puntaje_in_id:{
+                    required:'Elija su puntuación'
+                },
+                tx_descripcion:{
+                    required:'Ingrese un descripción'
+                }
+            },
+            errorPlacement: function(error, element) {
+                if (element.attr("name") == "va_nombre" || element.attr("name") == "va_email") {
+                    error.insertAfter($(element).parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            submitHandler: function() {
+                var idComPla = $(".nameResComent").attr('data-id-com');
+                var nameComen = $("#va_nombre").val();
+                var emailComen = $("#va_email").val();
+                var puntComen = $("#Ta_puntaje_in_id option:selected").val();
+                var comentComen = $("#tx_descripcion").val();
+                $.mobile.loading('show');         
+                $.ajax({
+                    url: dataSource.baseurl+'plato/restaurante/',
+                    data: 'id='+idComPla+'&va_nombre='+nameComen+'&va_email='+emailComen+'&Ta_puntaje_in_id='+puntComen+'&tx_descripcion='+comentComen,
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    jsonpCallback: 'jsonpCallback',
+                    success: function(data){
+                        $.mobile.loading('hide');
+                        //alert(idComPla);
+                        //var previous = '#' + $.mobile.activePage.prevAll('div[data-role="page"]')[0].id;
+                        $.mobile.changePage("#secondaryPage", {
+                            transition: 'slide',
+                            reverse: false
+                        });
+                        viewController.createComentarioPageComent(idComPla);
+                    }
+                });
+            }
+        });
+
+        /*$('#comentAgregar').submit(function(event) {
             event.preventDefault();
             var idComPla = $(".nameResComent").attr('data-id-com');
             var nameComen = $("#va_nombre").val();
@@ -411,8 +476,6 @@ var viewController = {
                 jsonpCallback: 'jsonpCallback',
                 success: function(data){
                     $.mobile.loading('hide');
-                    //alert(idComPla);
-                    //var previous = '#' + $.mobile.activePage.prevAll('div[data-role="page"]')[0].id;
                     $.mobile.changePage("#secondaryPage", {
                         transition: 'slide',
                         reverse: true
@@ -420,7 +483,7 @@ var viewController = {
                     viewController.createComentarioPageComent(idComPla);
                 }
             });
-        });
+        });*/
     },
     
     initAgregarComentario: function(){
