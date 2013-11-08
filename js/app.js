@@ -36,6 +36,7 @@ var dataSource = {
     /* get total number of movies */
     getNumMovies: function() {
         /* look for cached data first */
+        //alert(dataSource.nItems);
         if (dataSource.nItems != -1) {
             return $.Deferred().resolve(dataSource.nItems);
         } 
@@ -82,9 +83,13 @@ var dataSource = {
                 /* clean up data from remote source to apply our app-specific data format */
                 //dataSource.cleanupData(data.response["docs"]);
                 /* cache results for future queries */
-                dataSource.data[page] = data.docs;
-                /* return movie data */
-                return data.docs;
+                if(dataSource.nItems === 0){
+                    $.mobile.changePage('#datosVacios');
+                }else{
+                    dataSource.data[page] = data.docs;
+                    /* return movie data */
+                    return data.docs;
+                }
             });
 
         }
@@ -146,6 +151,7 @@ var viewController = {
     /* get developer key before the app can even start */
     preinit: function() {
         dataSource.getCargar();
+
         $('#form-search').submit(function(e) {
             e.preventDefault();
             /* get key from input screen */
@@ -164,6 +170,7 @@ var viewController = {
             //return false;
             
         });
+
         $(document).on("click", '.btn-selec', function(event){
             var key = $(this).attr('data-comida');
             var dist = '';
@@ -265,7 +272,6 @@ var viewController = {
         
         /* get total number of movies (this may involve asking remote data source, hence callback necessary) */
         return dataSource.getNumMovies().done(function(nmovies) {
-            
             /* calculate number of pages */
             viewController.nPrimaryPagesTotal = Math.ceil(nmovies / viewController.N_ITEMS_PER_PAGE);
             
